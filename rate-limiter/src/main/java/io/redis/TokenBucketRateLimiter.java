@@ -39,7 +39,7 @@ public class TokenBucketRateLimiter {
         boolean isAllowed = tokenCount > 0;
 
         if (isAllowed) {
-            tokenCount--; //This one consume one token if the request is allowed    
+            tokenCount--; // This one consume one token if the request is allowed    
         }
 
         // Update the Redis state
