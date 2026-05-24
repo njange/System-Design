@@ -6,7 +6,7 @@ import redis.clients.jedis.Transaction;
 public class TokenBucketRateLimiter {
     private final Jedis jedis;
     private final int bucketCapacity; // Maximum tokens the bucket can hold
-    private final double refillRate; // Tokens refilled per second
+    private final double refillRate; 
 
     public TokenBucketRateLimiter(Jedis jedis, int bucketCapacity, double refillRate) {
         this.jedis = jedis;
@@ -39,10 +39,10 @@ public class TokenBucketRateLimiter {
         boolean isAllowed = tokenCount > 0;
 
         if (isAllowed) {
-            tokenCount--; // Consume one token
+            tokenCount--; //This one consume one token if the request is allowed    
         }
 
-        // Update Redis state
+        // Update the Redis state
         transaction = jedis.multi();
         transaction.set(keyLastRefill, String.valueOf(currentTime));
         transaction.set(keyCount, String.valueOf(tokenCount));
